@@ -50,6 +50,14 @@ module.exports = class EasyJsonDB {
     get(key){
         return this.data[key];
     }
+
+    /**
+     * Check if a key data exists.
+     * @param {string} key 
+     */
+    has(key){
+        return Boolean(this.data[key]);
+    }
     
     /**
      * Set new data for a key in the database.

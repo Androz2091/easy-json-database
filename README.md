@@ -17,6 +17,7 @@ db.get("Hello"); // World
 db.delete("Hello");
 
 db.get("Hello"); // undefined
+db.has("Hello"); // false
 
 db.set("age", 10);
 db.add("age", 1); // 11
