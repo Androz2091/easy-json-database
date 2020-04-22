@@ -6,7 +6,7 @@ This database is used for the **[Scratch For Discord](https://github.com/Androz2
 
 ```js
 const Database = require("easy-json-database");
-const db = new Database("some-database.json");
+const db = new Database("./some-database.json");
 
 // Set data
 db.set("Hello", "World");

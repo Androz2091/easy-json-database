@@ -3,21 +3,15 @@ const fs = require("fs");
 module.exports = class EasyJsonDB {
 
     /**
-     * @param {string} fileName The name of the json file used for the database.
+     * @param {string} filePath The path of the json file used for the database.
      */
-    constructor(fileName){
+    constructor(filePath){
 
         /**
-         * The name of the file for the database.
+         * The path of the json file used as database.
          * @type {string}
          */
-        this.jsonFileName = fileName || "db.json";
-
-        /**
-         * The path of the file which is used as database.
-         * @type {string}
-         */
-        this.jsonFilePath = `./${this.jsonFileName}`;
+        this.jsonFilePath = filePath || "./db.json";
 
         /**
          * The data stored in the database.
