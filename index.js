@@ -84,6 +84,7 @@ module.exports = class EasyJsonDB {
      * @param {number} count 
      */
     add(key, count){
+        if(!this.data[key]) this.data[key] = 0;
         this.data[key] += count;
         this.saveDataToFile();
     }
@@ -94,6 +95,7 @@ module.exports = class EasyJsonDB {
      * @param {number} count 
      */
     subtract(key, count){
+        if(!this.data[key]) this.data[key] = 0;
         this.data[key] -= count;
         this.saveDataToFile();
     }
