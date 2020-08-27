@@ -1,6 +1,6 @@
 {
     "name": "easy-json-database",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Easy database using json",
     "main": "index.js",
     "repository": "git+https://github.com/Androz2091/easy-json-database.git",
