@@ -110,4 +110,12 @@ module.exports = class EasyJsonDB {
         this.saveDataToFile();
     }
 
+    /**
+     * Clear the database.
+     */
+    clear(){
+        this.data = {};
+        this.saveDataToFile();
+    }
+
 };
