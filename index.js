@@ -106,6 +106,7 @@ module.exports = class EasyJsonDB {
      * @param {*} element 
      */
     push(key, element){
+        if (!this.data[key]) this.data[key] = [];
         this.data[key].push(element);
         this.saveDataToFile();
     }
