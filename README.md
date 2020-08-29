@@ -11,6 +11,7 @@ const db = new Database("./some-database.json");
 // Set data
 db.set("Hello", "World");
 
+// Get data
 db.get("Hello"); // World
 
 // Delete data
@@ -25,4 +26,7 @@ db.subtract("age", 9); // 2
 
 db.set("array", [ "apple" ]);
 db.push("array", "orange"); // [ "apple", "orange" ]
+
+// Clear data
+db.clear();
 ```
