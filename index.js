@@ -3,15 +3,44 @@ const fs = require("fs");
 module.exports = class EasyJsonDB {
 
     /**
-     * @param {string} filePath The path of the json file used for the database.
+     * @typedef {object} SnapshotOptions
+     * @property {boolean} [enabled=false] Whether the snapshots are enabled
+     * @property {number} [interval=86400000] The interval between each snapshot
+     * @property {string} [path='./backups/'] The path of the backups
      */
-    constructor(filePath){
+
+    /**
+     * @typedef {object} DatabaseOptions
+     * @property {SnapshotOptions} snapshots
+     */
+
+    /**
+     * @param {string} filePath The path of the json file used for the database.
+     * @param {DatabaseOptions} options
+     */
+    constructor(filePath, options){
 
         /**
          * The path of the json file used as database.
          * @type {string}
          */
         this.jsonFilePath = filePath || "./db.json";
+
+        /**
+         * The options for the database
+         * @type {DatabaseOptions}
+         */
+        this.options = options;
+
+        if (this.options.snapshots && this.options.snapshots.enabled) {
+            const path = path || this.options.snapshots.path || './backups/';
+            if (!fs.existsSync(path)) {
+                fs.mkdirSync(path);
+            }
+            setInterval(() => {
+                this.makeSnapshot();
+            }, (this.options.snapshots.interval || 86400000));
+        }
 
         /**
          * The data stored in the database.
@@ -24,6 +53,19 @@ module.exports = class EasyJsonDB {
         } else {
             this.fetchDataFromFile();
         }
+    }
+
+    /**
+     * Make a snapshot of the database and save it in the snapshot folder
+     * @param {string} path The path where the snapshot will be stored
+     */
+    makeSnapshot (path) {
+        const path = path || this.options.snapshots.path || './backups/';
+        if (!fs.existsSync(path)) {
+            fs.mkdirSync(path);
+        }
+        const fileName = `snapshot-${Date.now()}.json`;
+        fs.writeFileSync(path.join(path, fileName));
     }
 
     /**
