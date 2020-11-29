@@ -30,10 +30,10 @@ module.exports = class EasyJsonDB {
          * The options for the database
          * @type {DatabaseOptions}
          */
-        this.options = options;
+        this.options = options || {};
 
         if (this.options.snapshots && this.options.snapshots.enabled) {
-            const path = path || this.options.snapshots.path || './backups/';
+            const path = this.options.snapshots.path || './backups/';
             if (!fs.existsSync(path)) {
                 fs.mkdirSync(path);
             }
@@ -60,7 +60,7 @@ module.exports = class EasyJsonDB {
      * @param {string} path The path where the snapshot will be stored
      */
     makeSnapshot (path) {
-        const path = path || this.options.snapshots.path || './backups/';
+        path = path || this.options.snapshots.path || './backups/';
         if (!fs.existsSync(path)) {
             fs.mkdirSync(path);
         }
@@ -159,6 +159,18 @@ module.exports = class EasyJsonDB {
     clear(){
         this.data = {};
         this.saveDataToFile();
+    }
+
+    /**
+     * Get all the data from the database.
+     */
+    all(){
+        return Object.keys(this.data).map((key) => {
+            return {
+                key,
+                data: this.data[key]
+            }
+        });
     }
 
 };
