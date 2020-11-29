@@ -35,4 +35,7 @@ db.push("array", "orange"); // [ "apple", "orange" ]
 
 // Clear data
 db.clear();
+
+// Get all the data
+db.all();
 ```
