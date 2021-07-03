@@ -5,5 +5,6 @@
     "main": "index.js",
     "repository": "git+https://github.com/Androz2091/easy-json-database.git",
     "author": "Androz2091 <androz2091@gmail.com>",
-    "license": "MIT"
+    "license": "MIT",
+    "typings": "./index.d.ts"
 }
