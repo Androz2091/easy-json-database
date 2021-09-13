@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const setNestedProperty = (object, key, value) => {
     const properties = key.split('.');
-    console.log(properties)
+    //console.log(properties)
     let index = 0;
     for (; index < properties.length - 1; ++index) {
         object = object[properties[index]];
