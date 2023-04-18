@@ -116,7 +116,7 @@ module.exports = class EasyJsonDB {
      * @param {string} key 
      */
     has(key){
-        return Boolean(getNestedProperty(this.data, key));
+        return getNestedProperty(this.data, key) != undefined;
     }
     
     /**
